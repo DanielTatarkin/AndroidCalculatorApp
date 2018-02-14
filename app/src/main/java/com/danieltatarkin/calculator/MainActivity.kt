@@ -65,6 +65,15 @@ class MainActivity : AppCompatActivity() {
         val opListener = View.OnClickListener { v ->
             val op = (v as Button).text.toString()
 
+            if (op == "Clear") {
+                newNumber.setText(null)
+                operation.setText(null)
+                result.setText(null)
+                operand1 = null
+                pendingOperation = ""
+                return@OnClickListener
+            }
+
             try {
                 val value = newNumber.text.toString().toDouble()
                 performOperation(value, op)
@@ -82,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         buttonMul.setOnClickListener(opListener)
         buttonMinus.setOnClickListener(opListener)
         buttonPlus.setOnClickListener(opListener)
+        buttonClear.setOnClickListener(opListener)
 
     }
 
@@ -90,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         if (operand1 == null) {
             operand1 = value
         } else {
+
 
             if (pendingOperation == "=") {
                 pendingOperation = operation
