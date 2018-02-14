@@ -8,9 +8,8 @@
 
     <EditText
         android:id="@+id/result"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:focusable="false"
@@ -33,7 +32,7 @@
 
     <EditText
         android:id="@+id/newNumber"
-        android:layout_width="293dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
