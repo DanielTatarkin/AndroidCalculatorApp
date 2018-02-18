@@ -65,12 +65,12 @@ class MainActivity : AppCompatActivity() {
         val opListener = View.OnClickListener { v ->
             val op = (v as Button).text.toString()
 
-            if (op == "Clear") {
-                newNumber.setText(null)
-                operation.setText(null)
-                result.setText(null)
-                operand1 = null
+            if (op == "Clear"){
+                newNumber.setText("")
+                result.setText("")
                 pendingOperation = ""
+                operation.text = ""
+                operand1 = null
                 return@OnClickListener
             }
 
@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         buttonMinus.setOnClickListener(opListener)
         buttonPlus.setOnClickListener(opListener)
         buttonClear.setOnClickListener(opListener)
+
 
     }
 
@@ -125,13 +126,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         outState?.putString(STATE_PENDING_OPERATION,pendingOperation)
-        outState?.putDouble(STATE_OPERAND1, operand1!!)
+        if (operand1 != null) outState?.putDouble(STATE_OPERAND1, operand1!!)           //to fix
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         operation?.text = savedInstanceState?.getString(STATE_PENDING_OPERATION)
         pendingOperation = savedInstanceState?.getString(STATE_PENDING_OPERATION)!!
-        operand1 = savedInstanceState.getDouble(STATE_OPERAND1)
+        if (operand1 != null) operand1 = savedInstanceState.getDouble(STATE_OPERAND1)   //to fix
+
     }
 }
