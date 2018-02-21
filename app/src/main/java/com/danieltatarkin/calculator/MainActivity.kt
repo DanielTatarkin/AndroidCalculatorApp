@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         button9.setOnClickListener(listener)
         buttonDot.setOnClickListener(listener)
 
+
         val opListener = View.OnClickListener { v ->
             val op = (v as Button).text.toString()
 
@@ -71,6 +72,21 @@ class MainActivity : AppCompatActivity() {
                 pendingOperation = ""
                 operation.text = ""
                 operand1 = null
+                return@OnClickListener
+            }
+
+            if (op == "(-)"){
+                if (newNumber.text.toString().isEmpty()){
+                    newNumber.append("-")
+                } else if (newNumber.text.toString() == "-"){
+                    newNumber.setText("")
+                } else if (newNumber.text.toString().isNotEmpty()) {
+                    var checkText = newNumber.text.toString()
+                    if (checkText.startsWith("-")){
+                        newNumber.text.delete(0,1)
+                    } else newNumber.text.insert(0,"-")
+                }
+
                 return@OnClickListener
             }
 
@@ -92,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         buttonMinus.setOnClickListener(opListener)
         buttonPlus.setOnClickListener(opListener)
         buttonClear.setOnClickListener(opListener)
+        buttonNeg.setOnClickListener(opListener)
 
 
     }
